@@ -18,6 +18,76 @@
             </nav>
         </header>
         <main>
+            <div class="contact-container">
+                <div class="contact-section">
+                    <h1>Contact Us</h1>
+                    <p>If you have any questions, feedback, or would like to get in touch with us, please feel free to reach out through the following channels:</p>
+                    <ul>
+                        <li>Email: <a href="mailto:drsilva@scu.edu">drsilva@scu.edu</a></li>
+                        <li>Phone: (123) 456-7890</li>
+                        <li>Address: 123 Education Lane, City, State, ZIP</li>
+                    </ul>
+                </div>
+                <div class="contact-image">
+                    <img src="images/contact-icon.png" alt="Contact Us">
+                </div>
+            </div>
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form action="mailto:drsilva@scu.edu" method="POST" enctype="text/plain">
+                    <label for="name">Name: <span class="red-required">*</span></label><br>
+                    <input type="text" id="name" name="name" placeholder="John Doe"><div class="error-message" id="name-error"></div><br><br>
+                    <label for="email">Email: <span class="red-required">*</span></label><br>
+                    <input type="email" id="email" name="email" placeholder="john.doe@example.com"><div class="error-message" id="email-error"></div><br><br>
+                    <label for="message">Message: <span class="red-required">*</span></label><br>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message here..."></textarea><div class="error-message" id="message-error"></div><br><br>
+                    <div class="error-message" id="message-error"></div><br>
+                    <input type="submit" value="Send">
+                </form>
+            </div>
+            <script>
+                const form = document.querySelector('.contact-form form');
+                const fields = [
+                    { id: 'name', name: 'Name' },
+                    { id: 'email', name: 'Email' },
+                    { id: 'message', name: 'Message' }
+                ];
+
+                function clearError(field) {
+                    const input = document.getElementById(field.id);
+                    const errorDiv = document.getElementById(field.id + '-error');
+                    input.style.borderColor = '';
+                    errorDiv.style.display = 'none';
+                }
+
+                fields.forEach(field => {
+                    const input = document.getElementById(field.id);
+                    input.addEventListener('input', () => clearError(field));
+                });
+
+                form.addEventListener('submit', function(event) {
+                    let isValid = true;
+
+                    fields.forEach(field => {
+                        const input = document.getElementById(field.id);
+                        const errorDiv = document.getElementById(field.id + '-error');
+                        const value = input.value.trim();
+
+                        if (!value) {
+                            input.style.borderColor = 'red';
+                            errorDiv.textContent = `Please fill out your ${field.name}.`;
+                            errorDiv.style.display = 'block';
+                            isValid = false;
+                        } else {
+                            clearError(field);
+                        }
+                    });
+
+                    if (!isValid) {
+                        event.preventDefault();
+                    }
+                });
+            </script>
         </main>
         <footer>
             <p>&copy; 2026 EduMarketSync. Diego Silva</p>

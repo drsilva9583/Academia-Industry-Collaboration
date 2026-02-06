@@ -64,6 +64,40 @@
                     <li><a href="https://www.eduaide.ai/" target="_blank">eduaide AI</a><p>AI-driven teaching assistant to create high-quality teaching materials and support educators. Similar to MagicSchool AI</p></li>
                 </ul>
             </div>
+
+            <div id="popup-overlay" class="overlay"></div>
+            <div id="welcome-popup" class="popup-box">
+                <div class="popup-content">
+                    <h2>Welcome to EduMarketSync &#9996;</h2>
+                    <p>
+                        Thank you for visiting EduMarketSync, your partner in aligning academic curricula with industry needs.
+                    </p>
+
+                    <button class="close-btn" onclick="closePopup()">Close</button>
+                </div>
+            </div>
+            <script>
+                var popup = document.getElementById("welcome-popup");
+                var overlay = document.getElementById("popup-overlay");
+
+                function openPopup() {
+                popup.style.display = "block";
+                overlay.style.display = "block";
+                }
+
+                function closePopup() {
+                popup.style.display = "none";
+                overlay.style.display = "none";
+                }
+                //open popup when page loads
+                window.onload = openPopup;
+                //close popup when clicking outside of it
+                window.onclick = function(event) {
+                if (event.target == overlay) {
+                    closePopup();
+                }
+                }
+            </script>
         </main>
         <footer>
             <p>&copy; 2026 EduMarketSync. Diego Silva</p>
